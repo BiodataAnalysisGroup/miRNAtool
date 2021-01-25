@@ -6,8 +6,15 @@
 - The main script is *script_mirs.R*. Hence, this is the one to be executed. The rest of the scripts are being called gradually inside the main script.
 - Maria's TODO list lies at the bottom of this readme.
 
-## Input:
-- The input parameters are specified inside the **input.yaml** file. No need to specify parameters inside the main script.
+## Scripts:
+- *script_mirs.R*: main script
+- *qc.R*: quality control
+- *diff_analysis.R*: differential analysis
+- *fa.R*: functional analysis
+
+## Execution:
+- **Libraries**: 
+-**Input**: The input parameters are specified inside the **input.yml** file. No need to specify parameters inside the main script.
 
 
 
