@@ -13,8 +13,8 @@
 - *fa.R*: functional analysis
 
 ## Execution:
-- **Packages**: Make sure that every package loaded in **lines 20-31** inside the *script_mirs.R* is installed. The package **saveImageHigh** is basically **nikopech**'s tool, so you need to install it from [here](https://github.com/nikopech/saveImageHigh)
--**Input**: The input parameters are specified inside the **input.yml** file. No need to specify parameters inside the main script.
+- **Packages**: Make sure that every package loaded in **lines 20-31** inside the *script_mirs.R* is installed. The package **saveImageHigh** is basically **nikopech**'s tool, so you need to install it from [here](https://github.com/nikopech/saveImageHigh).
+- **Input**: The input parameters are specified inside the **input.yml** file. No need to specify parameters inside the main script.
 
 
 
