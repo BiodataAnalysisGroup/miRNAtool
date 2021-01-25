@@ -1,0 +1,14 @@
+Selected NAs percentage threshold: 0.1
+Standard RTC threshold: 5
+
+Analysis for plate 1
+Endogenous data gg_miss_upset error for plate 1
+upset plots for missing data requre at least two variables to have missing data, there are no missing values in your data! This is probably a good thing.
+
+Analysis for plate 2
+Endogenous data gg_miss_upset error for plate 2
+upset plots for missing data requre at least two variables to have missing data, there are no missing values in your data! This is probably a good thing.
+
+Analysis for plate 3
+Endogenous data gg_miss_upset error for plate 3
+upset plots for missing data requre at least two variables to have missing data, there are no missing values in your data! This is probably a good thing.

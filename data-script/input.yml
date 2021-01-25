@@ -1,0 +1,26 @@
+# Specify the plates for which the analysis will be performed
+plates:
+ - 1
+ - 2
+ - 3
+
+# NA percentage threshold
+na_threshold: 0.1
+
+# Select whether the normalization has to be done with endogenous or exogenous data
+# Assign 'endogenous' or 'exogenous'
+normalization_en_ex: 'endogenous'
+
+# Select sign.f.table p-val criterion
+sign_table_pval: 0.01
+
+# Mirs: select validated or predicted
+# Assign 'validated' or 'predicted'
+validated_or_predicted: 'validated'
+
+# select go_enrich criterion
+go_criterion: 0.05
+
+# select the KEGG enrich criterion
+kegg_enrich_criterion: 0.05
+
