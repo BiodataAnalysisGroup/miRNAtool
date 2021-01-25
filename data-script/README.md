@@ -1,3 +1,20 @@
+# Mirs Analysis
+
+## Intro comments
+- The initial version of the code is stored in *initial_script.R* file.
+- A more systematical and autonomous version of the code is organized in files *script_mirs.R*, *qc.R*, *diff_analysis.R* and *fa.R*.
+- The main script is *script_mirs.R*. Hence, this is the one to be executed. The rest of the scripts are being called gradually inside the main script.
+- Maria's TODO list lies at the bottom of this readme.
+
+## Input:
+- The input parameters are specified inside the **input.yaml** file. No need to specify parameters inside the main script.
+
+
+
+
+## TODO LIST
+
+
 Maria's version
 
 To do:
