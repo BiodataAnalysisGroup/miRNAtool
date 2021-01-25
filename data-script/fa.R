@@ -1,7 +1,3 @@
-library(multiMiR)
-library(enrichR)
-library(saveImageHigh)
-
 functional_analysis <- function(sign.table.f, validated_or_predicted, kegg_enrich_criterion, go_criterion, output_dir){
   
   

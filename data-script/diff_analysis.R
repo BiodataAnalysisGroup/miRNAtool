@@ -1,10 +1,3 @@
-library(limma)
-library(ComplexHeatmap)
-library(multiMiR)
-library(enrichR)
-library(gsubfn)
-library(saveImageHigh)
-
 diff_analysis <- function(normalized_data, meta, output_dir, sign_table_pval){
   
   

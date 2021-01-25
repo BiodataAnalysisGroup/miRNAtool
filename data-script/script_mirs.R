@@ -18,13 +18,17 @@ source("diff_analysis.R")
 source("fa.R")
 
 # Libraries
-library(devtools)
 library(data.table)
 library(tidyverse)
 library(naniar)
 library(prada)
 library(gsubfn)
 library(yaml)
+library(saveImageHigh)
+library(ComplexHeatmap)
+library(multiMiR)
+library(enrichR)
+library(limma)
 
 ################# SETTING UP OUTPUT DIRECTORIES AND REPORT FILE ################
 # Creating output folder

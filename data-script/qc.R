@@ -1,5 +1,3 @@
-library(saveImageHigh)
-
 QC <- function(data, plate, output_dir, na_threshold, rtc_threshold ,normalization_en_ex, report_file){
   
   # Leave a blank line
