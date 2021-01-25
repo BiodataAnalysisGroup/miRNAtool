@@ -21,8 +21,7 @@
   2. Directory *'Differential Analysis/'* contains the output from differential analysis.
   3. Directory *'Functional Analysis/'* contains the output from functional analysis.
   4. Tables normalized_data, data.all, multimir_results.validated@summary$target_symbol **or** multimir_results.predicted@summary$target_symbol (depends on the input), KEGG_enrich.f and GO_enrich.f are stored inside the *'Tables/'* directory as .csv files.
-
-
+  5. *report.txt'*: Contains information concerning the analysis (e.g. samples that were droped out due to high NA's percentage, errors in specific plots, etc) and execution time measurements.
 
 
 ## TODO LIST
