@@ -85,7 +85,7 @@ functional_analysis <- function(sign.table.f, validated_or_predicted, kegg_enric
   enriched <- enrichr(genesym, dbs)
   GO_enrich<- as.data.frame(enriched[["GO_Biological_Process_2018"]])
   GO_enrich.f<- subset(GO_enrich, Adjusted.P.value < go_criterion)
-  write.csv(KEGG_enrich.f, paste('output/Tables/GO_enrich_f_',validated_or_predicted,'.csv', sep = ''))
+  write.csv(KEGG_enrich.f, paste(tables_dir, '/GO_enrich_f_',validated_or_predicted,'.csv', sep = ''))
   
   gos <- GO_enrich.f 
   gos <- gos[order(gos$Adjusted.P.value), ]  # sort
