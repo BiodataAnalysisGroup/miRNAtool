@@ -256,6 +256,7 @@ gos <- GO_enrich.f
 gos <- gos[order(-gos$Adjusted.P.value), ]  # sort
 gos$Term <- factor(gos$Term, levels=gos$Term)
 head(gos)
+
 # Diverging Barcharts
 ggplot(gos, aes(x=Term, y=Adjusted.P.value , label=Adjusted.P.value)) + 
   geom_bar(stat='identity', width=.1,position="dodge")  +

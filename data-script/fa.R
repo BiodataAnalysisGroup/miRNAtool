@@ -67,6 +67,7 @@ functional_analysis <- function(sign.table.f, validated_or_predicted, kegg_enric
   gos <- KEGG_enrich.f
   gos <- gos[order(gos$P.value), ]  
   gos <- gos[c(1:50),]  # Keep top 50 values
+  gos <- gos[-order(gos$Adjusted.P.value), ] # sort again 
   gos$Term <- factor(gos$Term, levels=gos$Term)
   
   #png(file=paste(output_dir,'/KEGG_enrichment',plate,'.png', sep = ''), width=1500, height=1500)
@@ -89,6 +90,7 @@ functional_analysis <- function(sign.table.f, validated_or_predicted, kegg_enric
   gos <- GO_enrich.f 
   gos <- gos[order(gos$Adjusted.P.value), ]  # sort
   gos <- gos[c(1:50),]  # Keep top 50 values
+  gos <- gos[-order(-gos$Adjusted.P.value), ] # sort again 
   gos$Term <- factor(gos$Term, levels=gos$Term)
   head(gos)
   
