@@ -42,8 +42,8 @@ functional_analysis <- function(sign.table.f, validated_or_predicted, kegg_enric
   myplot <- ggplot(gos, aes(x=target_symbol, y=as.numeric(count)) )+ 
     geom_bar(stat='identity', width=.2,position="dodge")  +
     coord_flip()
-  save_as_pdf({print(myplot)}, file.name = paste(output_dir,'/diverging_barcharts_plate.pdf', sep = ''), width = 6, height = 6)
-  save_image({print(myplot)}, file.name = paste(output_dir,'/diverging_barcharts_plate.png', sep = ''), width = 6, height = 8)
+  save_as_pdf({print(myplot)}, file.name = paste(output_dir,'/diverging_barcharts.pdf', sep = ''), width = 6, height = 6)
+  save_image({print(myplot)}, file.name = paste(output_dir,'/diverging_barcharts.png', sep = ''), width = 6, height = 8)
   #print(myplot)
   #dev.off()
   
@@ -65,15 +65,16 @@ functional_analysis <- function(sign.table.f, validated_or_predicted, kegg_enric
   
   
   gos <- KEGG_enrich.f
-  gos <- gos[order(-gos$P.value), ]  
+  gos <- gos[order(gos$P.value), ]  
+  gos <- gos[c(1:50),]  # Keep top 50 values
   gos$Term <- factor(gos$Term, levels=gos$Term)
   
   #png(file=paste(output_dir,'/KEGG_enrichment',plate,'.png', sep = ''), width=1500, height=1500)
   myplot <- ggplot(gos, aes(x=Term, y=Adjusted.P.value , label=Adjusted.P.value)) + 
     geom_bar(stat='identity', width=.2,position="dodge")  +
     coord_flip()
-  save_as_pdf({print(myplot)}, file.name = paste(output_dir,'/KEGG_enrichment',plate,'.pdf', sep = ''), width = 10, height = 14)
-  save_image({print(myplot)}, file.name = paste(output_dir,'/KEGG_enrichment',plate,'.png', sep = ''), width = 10, height = 14)
+  save_as_pdf({print(myplot)}, file.name = paste(output_dir,'/KEGG_enrichment',plate,'.pdf', sep = ''), width = 8, height = 10)
+  save_image({print(myplot)}, file.name = paste(output_dir,'/KEGG_enrichment',plate,'.png', sep = ''), width = 8, height = 10)
   #print(myplot)
   #dev.off()
   
@@ -86,7 +87,8 @@ functional_analysis <- function(sign.table.f, validated_or_predicted, kegg_enric
   write.csv(KEGG_enrich.f, paste('output/Tables/GO_enrich_f_',validated_or_predicted,'.csv', sep = ''))
   
   gos <- GO_enrich.f 
-  gos <- gos[order(-gos$Adjusted.P.value), ]  # sort
+  gos <- gos[order(gos$Adjusted.P.value), ]  # sort
+  gos <- gos[c(1:50),]  # Keep top 50 values
   gos$Term <- factor(gos$Term, levels=gos$Term)
   head(gos)
   
@@ -95,8 +97,8 @@ functional_analysis <- function(sign.table.f, validated_or_predicted, kegg_enric
   myplot <- ggplot(gos, aes(x=Term, y=Adjusted.P.value , label=Adjusted.P.value)) + 
     geom_bar(stat='identity', width=.1,position="dodge")  +
     coord_flip()
-  save_as_pdf({print(myplot)}, file.name = paste(output_dir,'/GO.pdf', sep = ''), width = 20, height = 20)
-  save_image({print(myplot)}, file.name = paste(output_dir,'/GO.png', sep = ''), width = 20, height = 20)
+  save_as_pdf({print(myplot)}, file.name = paste(output_dir,'/GO.pdf', sep = ''), width = 8, height = 10)
+  save_image({print(myplot)}, file.name = paste(output_dir,'/GO.png', sep = ''), width = 8, height = 10)
   #print(myplot)
   #dev.off()
   

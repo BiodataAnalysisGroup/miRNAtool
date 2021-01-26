@@ -41,7 +41,7 @@ diff_analysis <- function(normalized_data, meta, output_dir, sign_table_pval){
 
   colnames(data.all)
   heat.data<- data.all[,c(n_data_indices, c_data_indices)]
-  row.names(heat.data)<- data.all$ID
+#  row.names(heat.data)<- data.all$ID
   
   z.mat <- t(scale(t(heat.data), center=TRUE, scale=TRUE))
   head(z.mat)

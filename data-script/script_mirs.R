@@ -29,6 +29,8 @@ library(ComplexHeatmap)
 library(multiMiR)
 library(enrichR)
 library(limma)
+library(lubridate)
+
 
 ################# SETTING UP OUTPUT DIRECTORIES AND REPORT FILE ################
 # Creating output folder
@@ -79,7 +81,6 @@ go_criterion <- input_parameters$go_criterion
 kegg_enrich_criterion <- input_parameters$kegg_enrich_criterion
 
 
-
 ######################### MAIN CODE ############################################
 
 list.files()
@@ -101,11 +102,17 @@ data[,c(2:7)]<- apply(apply(data[,c(2:7)], 2, gsub, patt=",", replace="."), 2, a
 
 # Drop data with "blank" ID
 data <- data[c(which(data$ID != "blank")), ]
+
+# Savind total data to .csv
 write.csv(data, 'total_data.csv')
 
 #TO DO: merge the three plates before the diff analysis
 # Initial sample names
 normalized_data <- NULL
+
+# Time start
+start_time <- proc.time()
+total_start_time <- start_time
 
 # QC analysis
 for (plate in plates){
@@ -123,16 +130,58 @@ for (plate in plates){
   }
 }
 
+qc_time_secs <- proc.time() - start_time
+qc_time_secs <- qc_time_secs[3]
+qc_time_secs <- as.character(seconds_to_period(qc_time_secs))
+
+
 if (!is.null(normalized_data)){
   
-  # diff analysis and functional analysis
-  normalized_data<- normalized_data[!duplicated(normalized_data$ID),]
+  # Some samples(rows) may have the same IDS
+  # In these IDs we assign the information of their index in their names, in order to distinguish them.
+  indices_duplicated <- which(duplicated(normalized_data$ID))
+  normalized_data$ID[indices_duplicated] <- paste(normalized_data$ID[indices_duplicated], ' - index ', indices_duplicated, sep = '') 
+  
+  # Saving normalized_data to csv
   write.csv(normalized_data, 'output/Tables/normalized_data.csv')
   
+  # diff analysis 
+  start_time <- proc.time()
   sign.table.f <- diff_analysis(normalized_data[,-dim(normalized_data)[2]], meta, 'output/Differential Analysis', sign_table_pval)
+  da_time_secs <- proc.time() - start_time
+  da_time_secs <- da_time_secs[3]
+  da_time_secs <- as.character(seconds_to_period(da_time_secs))
+  
+  # functional analysis
+  start_time <- proc.time()
   functional_analysis(sign.table.f, validated_or_predicted, kegg_enrich_criterion, go_criterion, 'output/Functional Analysis')
-
+  fa_time_secs <- proc.time() - start_time
+  fa_time_secs <- fa_time_secs[3]
+  fa_time_secs <- as.character(seconds_to_period(fa_time_secs))
+  
   } else{
   # Todo: add some warnings - tasks here
   print("All plates were rejected from quality control analysis")
 }
+
+total_end_time <- proc.time()
+total_time_secs <- total_end_time - total_start_time
+total_time_secs <- total_time_secs[3]
+total_time_secs <- as.character(seconds_to_period(total_time_secs))
+
+
+# Saving execution time to report
+to_report <- "\nExecution time:"
+cat(to_report, file = report_file, sep = '\n', append = TRUE)
+
+to_report <- paste("Total execution time: ", total_time_secs, sep = '')
+cat(to_report, file = report_file, sep = '\n', append = TRUE)
+
+to_report <- paste("QC execution time: ", qc_time_secs, sep = '')
+cat(to_report, file = report_file, sep = '\n', append = TRUE)
+
+to_report <- paste("Differential analysis execution time: ", da_time_secs, sep = '')
+cat(to_report, file = report_file, sep = '\n', append = TRUE)
+
+to_report <- paste("Functional analysis execution time: ", fa_time_secs, sep = '')
+cat(to_report, file = report_file, sep = '\n', append = TRUE)

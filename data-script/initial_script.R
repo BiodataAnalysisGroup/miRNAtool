@@ -213,6 +213,7 @@ gos <- gos[order(-gos$count), ]  # sort
 gos <- gos[c(2:50),]
 gos$target_symbol <- factor(gos$target_symbol, levels=gos$target_symbol)
 head(gos)
+
 # Diverging Barcharts
 ggplot(gos, aes(x=target_symbol, y=as.numeric(count)) )+ 
   geom_bar(stat='identity', width=.2,position="dodge")  +
