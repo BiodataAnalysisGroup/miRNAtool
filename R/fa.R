@@ -1,4 +1,4 @@
-functional_analysis <- function(sign.table.f, validated_or_predicted, kegg_enrich_criterion, go_criterion, output_dir){
+functional_analysis <- function(sign.table.f, validated_or_predicted, kegg_enrich_criterion, go_criterion, output_dir, tables_dir){
   
   
   top_miRNAs<-sign.table.f$ID
@@ -26,7 +26,7 @@ functional_analysis <- function(sign.table.f, validated_or_predicted, kegg_enric
   res<-as.data.frame(multimir_results@summary)
   res$barcode<- paste(res$mature_mirna_id, res$target_symbol)
   res.plot<-res[!duplicated(res$barcode), ]
-  write.csv(res$target_symbol, paste('output/Tables/multimir_results_',validated_or_predicted,'_summary_target_symbol.csv', sep = ''))
+  write.csv(res$target_symbol, paste(tables_dir, '/multimir_results_',validated_or_predicted,'_summary_target_symbol.csv', sep = ''))
   
   targetgenes_count<-res.plot %>% group_by(target_symbol) %>% summarise(count= n()) %>% filter(!is.na(target_symbol))
   
@@ -61,7 +61,7 @@ functional_analysis <- function(sign.table.f, validated_or_predicted, kegg_enric
   enriched <- enrichr(genesym, dbs)
   KEGG_enrich<- as.data.frame(enriched[["KEGG_2019_Human"]])
   KEGG_enrich.f<- subset(KEGG_enrich, Adjusted.P.value < kegg_enrich_criterion)
-  write.csv(KEGG_enrich.f, paste('output/Tables/KEGG_enrich_f_',validated_or_predicted,'.csv', sep = ''))
+  write.csv(KEGG_enrich.f, paste(tables_dir, '/KEGG_enrich_f_',validated_or_predicted,'.csv', sep = ''))
   
   
   gos <- KEGG_enrich.f

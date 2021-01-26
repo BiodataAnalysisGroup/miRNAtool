@@ -33,26 +33,33 @@ library(lubridate)
 
 
 ################# SETTING UP OUTPUT DIRECTORIES AND REPORT FILE ################
-# Creating output folder
-dir.create("output")
-for (plate in plates){
-  to_create <- paste('output/plate', plate, sep = '')
-  dir.create(to_create)
-}
-dir.create("output/Differential Analysis")
-dir.create("output/Functional Analysis")
-dir.create("output/Tables")
+# Creating output folders
+output_dir <- paste(dirname(getwd()), "/output", sep = '')
+diff_analysis_directory <- paste(output_dir,"/Differential Analysis", sep = '')
+fa_directory <- paste(output_dir,"/Functional Analysis", sep = '')
+tables_directory <- paste(output_dir,"/Tables", sep = '')
+
+dir.create(output_dir)
+dir.create(diff_analysis_directory)
+dir.create(fa_directory)
+dir.create(tables_directory)
 
 # Creating the report file
-report_file <- 'output/report.txt'
+report_file <- paste(output_dir, '/report.txt',sep = '')
 file.create(report_file)
 
 
 ############## LOADING INPUTS FROM YAML FILE ###################################
-input_parameters <- read_yaml('input.yml')
+inputfolder <- paste(dirname(getwd()), "/data/", sep = '')
+yaml_path <- paste(inputfolder, 'input.yml', sep = '')
+input_parameters <- read_yaml(yaml_path)
 
 # Num of plates
 plates <- input_parameters$plates
+for (plate in plates){
+  to_create <- paste(output_dir,'/plate', plate, sep = '')
+  dir.create(to_create)
+}
 
 # Threshold percentage (values: from 0 to 1)
 # In case the percentage of NA's is higher than threshold, the sample is excluded
@@ -85,9 +92,9 @@ kegg_enrich_criterion <- input_parameters$kegg_enrich_criterion
 
 list.files()
 
-mirs<- fread("miRs_annotation_3plates.csv")
-data<- fread("miRNome_data.csv")
-meta<- fread("phenodata.csv")
+mirs<- fread(paste(inputfolder, "/miRs_annotation_3plates.csv", sep = ''))
+data<- fread(paste(inputfolder, "/miRNome_data.csv", sep = ''))
+meta<- fread(paste(inputfolder, "/phenodata.csv", sep = ''))
 
 head(meta)
 
@@ -103,9 +110,6 @@ data[,c(2:7)]<- apply(apply(data[,c(2:7)], 2, gsub, patt=",", replace="."), 2, a
 # Drop data with "blank" ID
 data <- data[c(which(data$ID != "blank")), ]
 
-# Savind total data to .csv
-write.csv(data, 'total_data.csv')
-
 #TO DO: merge the three plates before the diff analysis
 # Initial sample names
 normalized_data <- NULL
@@ -117,7 +121,7 @@ total_start_time <- start_time
 # QC analysis
 for (plate in plates){
   print(paste('Analysis for plate ', plate, sep = ''))
-  norm_data <- QC(copy(data), plate, 'output', na_threshold_perc, rtc_threshold ,normalization_en_ex, report_file)
+  norm_data <- QC(copy(data), plate, output_dir, na_threshold_perc, rtc_threshold ,normalization_en_ex, report_file)
   norm_data$plate <- paste('Plate', plate, sep = ' ')
   
   if (is.null(normalized_data)){
@@ -143,18 +147,18 @@ if (!is.null(normalized_data)){
   normalized_data$ID[indices_duplicated] <- paste(normalized_data$ID[indices_duplicated], ' - index ', indices_duplicated, sep = '') 
   
   # Saving normalized_data to csv
-  write.csv(normalized_data, 'output/Tables/normalized_data.csv')
+  write.csv(normalized_data, paste(tables_directory, '/normalized_data.csv', sep = ''))
   
   # diff analysis 
   start_time <- proc.time()
-  sign.table.f <- diff_analysis(normalized_data[,-dim(normalized_data)[2]], meta, 'output/Differential Analysis', sign_table_pval)
+  sign.table.f <- diff_analysis(normalized_data[,-dim(normalized_data)[2]], meta, diff_analysis_directory, tables_directory, sign_table_pval)
   da_time_secs <- proc.time() - start_time
   da_time_secs <- da_time_secs[3]
   da_time_secs <- as.character(seconds_to_period(da_time_secs))
   
   # functional analysis
   start_time <- proc.time()
-  functional_analysis(sign.table.f, validated_or_predicted, kegg_enrich_criterion, go_criterion, 'output/Functional Analysis')
+  functional_analysis(sign.table.f, validated_or_predicted, kegg_enrich_criterion, go_criterion, fa_directory, tables_directory)
   fa_time_secs <- proc.time() - start_time
   fa_time_secs <- fa_time_secs[3]
   fa_time_secs <- as.character(seconds_to_period(fa_time_secs))

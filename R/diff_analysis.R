@@ -1,4 +1,4 @@
-diff_analysis <- function(normalized_data, meta, output_dir, sign_table_pval){
+diff_analysis <- function(normalized_data, meta, output_dir, tables_dir, sign_table_pval){
   
   
   meta <- meta[which(meta$Sample_ID %in% names(normalized_data)),]
@@ -36,7 +36,7 @@ diff_analysis <- function(normalized_data, meta, output_dir, sign_table_pval){
   data.all<-merge(data, sign.table.f, by.x = "ID", by.y = "ID")
   n_data_indices <- which(startsWith(names(data.all), "Normal"))
   c_data_indices <- which(startsWith(names(data.all), "Cancer"))
-  write.csv(data.all, 'output/Tables/data_all.csv')
+  write.csv(data.all, paste(tables_dir, '/data_all.csv',sep = ''))
   
 
   colnames(data.all)
