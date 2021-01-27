@@ -47,9 +47,14 @@ source("script_mirs.R")
 ```
 
 ## Additional scripts
-- `initial_script.R`: Contains the full code of the inital version of the project. There is no need to execute this file.
+- `initial_script.R`: Contains the full code of the initial version of the project. There is no need to execute this file.
 
-## Execution:
+## Input:
+- For information concerning the input please move to the `input` [folder]() and checkout the correpsonding README.md file.
+
+## Output:
+- For information concerning the output please move to the `output` [folder]() and checkout the correpsonding README.md file
+
 - **Packages**: Make sure that every package loaded in **lines 20-31** inside the *script_mirs.R* is installed. The package **saveImageHigh** is basically **nikopech**'s tool, so you need to install it from [here](https://github.com/nikopech/saveImageHigh).
 - **Input**: The input parameters are specified inside the **input.yml** file. No need to specify parameters inside the main script.
 - **Execution**: Just run *script_mirs.R*.
@@ -62,7 +67,7 @@ source("script_mirs.R")
 
 
 ## Acknowledgements
-- [nikopecη](https://github.com/nikopech/)  
+- [nikopech](https://github.com/nikopech/)  
 Scripts `save_as_pdf.R` and `save_image.R` were taken from nikopech's project [saveImageHigh](https://github.com/nikopech/saveImageHigh)
 
 ## License
