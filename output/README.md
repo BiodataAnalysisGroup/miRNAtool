@@ -8,4 +8,4 @@ This folder is created automatically by the execution of the project.
 - `plate1`: Folder that containts the output plots from the quality control of plate 1, in both **.png** and **.pdf** format.
 - `plate2`: Folder that containts the output plots from the quality control of plate 2, in both **.png** and **.pdf** format.
 - `plate3`: Folder that containts the output plots from the quality control of plate 3, in both **.png** and **.pdf** format.
-- `report.txt`: File that contains information concerning the analysis (e.g. samples that were droped out due to high NA's percentage, errors in specific plots, etc) and execution time measurements.
+- `report.txt`: File that contains information regarding the analysis (e.g. samples that were droped out due to high NA's percentage, errors in specific plots, etc) and execution time measurements.
