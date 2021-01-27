@@ -46,6 +46,9 @@ In order to run the project:
 source("script_mirs.R")
 ```
 
+## Additional scripts
+- `initial_script.R`: Contains the full code of the inital version of the project. There is no need to execute this file.
+
 ## Execution:
 - **Packages**: Make sure that every package loaded in **lines 20-31** inside the *script_mirs.R* is installed. The package **saveImageHigh** is basically **nikopech**'s tool, so you need to install it from [here](https://github.com/nikopech/saveImageHigh).
 - **Input**: The input parameters are specified inside the **input.yml** file. No need to specify parameters inside the main script.
@@ -59,7 +62,8 @@ source("script_mirs.R")
 
 
 ## Acknowledgements
-Have to fill this up.
+- [nikopecη](https://github.com/nikopech/)  
+Scripts `save_as_pdf.R` and `save_image.R` were taken from nikopech's project [saveImageHigh](https://github.com/nikopech/saveImageHigh)
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE](https://github.com/BiodataAnalysisGroup/miRNAtool/blob/main/LICENSE) file for details.
