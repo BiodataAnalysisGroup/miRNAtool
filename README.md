@@ -8,7 +8,7 @@ miRNAStool repository consists of three folders:
 - **output**: This is where all the output files are stored. This folder is created automatically while executing the project. 
 
 ## Installing
-The project can be downloaded using git:
+The project can be downloaded using git:  
 `git clone https://github.com/BiodataAnalysisGroup/miRNAtool.git`
 
 
