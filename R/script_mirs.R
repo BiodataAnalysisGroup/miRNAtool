@@ -20,17 +20,17 @@ source("save_as_pdf.R")
 source("save_image.R")
 
 # Libraries
-library(data.table)
-library(tidyverse)
+library(data.table) #
+library(tidyverse) #
 library(naniar)
 library(prada)
-library(gsubfn)
-library(yaml)
+library(gsubfn) #
+library(yaml) #
 library(ComplexHeatmap)
 library(multiMiR)
-library(enrichR)
+library(enrichR) #
 library(limma)
-library(lubridate)
+library(lubridate) #
 
 
 ################# SETTING UP OUTPUT DIRECTORIES AND REPORT FILE ################
