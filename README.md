@@ -16,7 +16,7 @@ Execute the following lines to install the required packages:
 install.packages(c("data.table", "tidyverse", "gsubfn", "yaml", "enrichR", "lubridate"))
 ```
 
--from Bioconductor:
+- from Bioconductor:
 
 ```
 BiocManager::install(c("naniar", "prada", "ComplexHeatmap", "multiMiR", "limma"))
