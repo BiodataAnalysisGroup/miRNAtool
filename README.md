@@ -1,6 +1,7 @@
-# Mirs Analysis
+# miRNAStool
 
-## Intro comments
+## Getting started
+
 - The initial version of the code is stored in *initial_script.R* file.
 - A more systematical and autonomous version of the code is organized in files *script_mirs.R*, *qc.R*, *diff_analysis.R* and *fa.R*.
 - The main script is *script_mirs.R*. Hence, this is the one to be executed. The rest of the scripts are being called gradually inside the main script.
