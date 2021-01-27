@@ -13,10 +13,14 @@ Execute the following lines to install the required packages:
 - from CRAN:
 
 ```
-install.packages(c("data.table", "tidyverse", "gsubfn"))
+install.packages(c("data.table", "tidyverse", "gsubfn", "yaml", "enrichR", "lubridate"))
 ```
 
 -from Bioconductor:
+
+```
+BiocManager::install(c("naniar", "prada", "ComplexHeatmap", "multiMiR", "limma"))
+```
 
 
 ### Installing
