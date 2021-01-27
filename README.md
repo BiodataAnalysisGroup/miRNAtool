@@ -30,7 +30,18 @@ git clone https://github.com/BiodataAnalysisGroup/miRNAtool.git
 ```
 
 ### Running the project
-Have to fill this up.
+The framework consists of six scripts:
+- ```script_mirs.R```
+- ```qc.R``` 
+- ```diff_analysis.R```
+- ```fa.R```
+- ```save_as_pdf.R``` 
+- ```save_image.R```
+
+In order to run the project, set the [R](https://github.com/BiodataAnalysisGroup/UMIc/tree/master/R) folder as your working directory, set the input parameters in the main script ```UMIsProject.R``` and then use the following command:
+```
+source("UMIsProject.R")
+```
 
 ## Execution:
 - **Packages**: Make sure that every package loaded in **lines 20-31** inside the *script_mirs.R* is installed. The package **saveImageHigh** is basically **nikopech**'s tool, so you need to install it from [here](https://github.com/nikopech/saveImageHigh).
