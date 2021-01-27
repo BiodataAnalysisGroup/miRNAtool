@@ -50,10 +50,10 @@ source("script_mirs.R")
 - `initial_script.R`: Contains the full code of the initial version of the project. There is no need to execute this file.
 
 ## Input
-- For information concerning the input please move to the `data` [folder](https://github.com/BiodataAnalysisGroup/miRNAtool/tree/main/data) and checkout the correpsonding README.md file.
+- For extra details about the input please move to the `data` [folder](https://github.com/BiodataAnalysisGroup/miRNAtool/tree/main/data) and checkout the correpsonding README.md file.
 
 ## Output
-- For information concerning the output please move to the `output` [folder](https://github.com/BiodataAnalysisGroup/miRNAtool/tree/main/output) and checkout the correpsonding README.md file
+- For extra details about the output please move to the `output` [folder](https://github.com/BiodataAnalysisGroup/miRNAtool/tree/main/output) and checkout the correpsonding README.md file
 
 
 ## Acknowledgements
