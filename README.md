@@ -3,9 +3,9 @@ mirsRNAtool was implemented in [R](https://www.r-project.org/).
 
 ## Structure
 miRNAStool repository consists of three folders:
-- **data**: This is where all the input files are stored.
-- **R**: This is where all the R scripts are stored.
-- **output**: This is where all the output files are stored. This folder is created automatically while executing the project. 
+- `data`: This is where all the input files are stored.
+- `R`: This is where all the R scripts are stored.
+- `output`: This is where all the output files are stored. This folder is created automatically while executing the project. 
 
 ## Getting started
 ### Dependencies
@@ -38,9 +38,12 @@ The framework consists of six scripts:
 - ```save_as_pdf.R``` 
 - ```save_image.R```
 
-In order to run the project, set the [R](https://github.com/BiodataAnalysisGroup/UMIc/tree/master/R) folder as your working directory, set the input parameters in the main script ```UMIsProject.R``` and then use the following command:
+In order to run the project:
+1. Set the [R](https://github.com/BiodataAnalysisGroup/miRNAtool/tree/main/R) folder as your working directory
+2. Place the required input files inside the `data` directory and set the parameters inside the .yaml file. See instructions [here](https://github.com/BiodataAnalysisGroup/miRNAtool/tree/main/data). 
+3. Use the following command:
 ```
-source("UMIsProject.R")
+source("script_mirs.R")
 ```
 
 ## Execution:
