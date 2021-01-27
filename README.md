@@ -49,21 +49,11 @@ source("script_mirs.R")
 ## Additional scripts
 - `initial_script.R`: Contains the full code of the initial version of the project. There is no need to execute this file.
 
-## Input:
-- For information concerning the input please move to the `input` [folder]() and checkout the correpsonding README.md file.
+## Input
+- For information concerning the input please move to the `data` [folder](https://github.com/BiodataAnalysisGroup/miRNAtool/tree/main/data) and checkout the correpsonding README.md file.
 
-## Output:
-- For information concerning the output please move to the `output` [folder]() and checkout the correpsonding README.md file
-
-- **Packages**: Make sure that every package loaded in **lines 20-31** inside the *script_mirs.R* is installed. The package **saveImageHigh** is basically **nikopech**'s tool, so you need to install it from [here](https://github.com/nikopech/saveImageHigh).
-- **Input**: The input parameters are specified inside the **input.yml** file. No need to specify parameters inside the main script.
-- **Execution**: Just run *script_mirs.R*.
-- **Output**: Inside the *'output/'* directory:
-  1. Directories *'plate1/'*, *'plate2/'*  and *'plate3/'* contain the outputs from quality control analysis.
-  2. Directory *'Differential Analysis/'* contains the output from differential analysis.
-  3. Directory *'Functional Analysis/'* contains the output from functional analysis.
-  4. Tables normalized_data, data.all, multimir_results.validated@summary$target_symbol **or** multimir_results.predicted@summary$target_symbol (depends on the input), KEGG_enrich.f and GO_enrich.f are stored inside the *'Tables/'* directory as .csv files.
-  5. *report.txt'*: Contains information concerning the analysis (e.g. samples that were droped out due to high NA's percentage, errors in specific plots, etc) and execution time measurements.
+## Output
+- For information concerning the output please move to the `output` [folder](https://github.com/BiodataAnalysisGroup/miRNAtool/tree/main/output) and checkout the correpsonding README.md file
 
 
 ## Acknowledgements
