@@ -1,5 +1,5 @@
 # data
-This is the folder where all input files should be placed, for the project to run properly.
+This is the folder where all input files are stored, for the project to run properly.
 
 ## Input data
 - The input data are basically all the **.csv** files: `miRNome_data.csv`, `miR_annotation.csv`, `miRs_annotation_3plates.csv` and `phenodata.csv`.  
