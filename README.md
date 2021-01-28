@@ -2,7 +2,7 @@
 mirsRNAtool was implemented in [R](https://www.r-project.org/). 
 
 ## Structure
-miRNAStool repository consists of three folders:
+miRNAtool repository consists of three folders:
 - `data`: This is where all the input files are stored.
 - `R`: This is where all the R scripts are stored.
 - `output`: This is where all the output files are stored. This folder is created automatically while executing the project. 
