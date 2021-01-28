@@ -2,7 +2,7 @@
 This is the folder where all input files are stored, for the project to run properly.
 
 ## Input data
-- The input data are basically all the **.csv** files: `miRNome_data.csv`, `miR_annotation.csv`, `miRs_annotation_3plates.csv` and `phenodata.csv`.  
+- The input data are basically all the **.csv** files: `miRNome_data.csv`, `miRs_annotation_3plates.csv` and `phenodata.csv`.  
 Hence, the input files should be of the same format, having the same structure and definetely the same names.
 
 ## User's parameters
