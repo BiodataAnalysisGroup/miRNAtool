@@ -14,7 +14,9 @@ Endogenous data gg_miss_upset error for plate 3
 upset plots for missing data requre at least two variables to have missing data, there are no missing values in your data! This is probably a good thing.
 
 Execution time:
-Total execution time: 14M 43.8359999999999S
-QC execution time: 14.46S
-Differential analysis execution time: 7.64800000000002S
-Functional analysis execution time: 14M 21.703S
+Total execution time: 18M 51.0199999999995S
+QC execution time: 10.4219999999996S
+Differential analysis execution time: 2.31900000000041S
+Functional analysis execution time: 18M 38.2539999999999S
+
+Max memory used: 274.7 Mb

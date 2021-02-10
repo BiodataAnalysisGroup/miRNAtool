@@ -7,6 +7,7 @@ diff_analysis <- function(normalized_data, meta, output_dir, tables_dir, sign_ta
   row.names(dfexp)<- normalized_data$ID
   
   pheno <- factor(meta$Group)
+  groups <- unique(meta$Group)
   
   phenoMat <- model.matrix(~pheno)
   colnames(phenoMat) <- sub("^pheno","",colnames(phenoMat))
@@ -30,12 +31,10 @@ diff_analysis <- function(normalized_data, meta, output_dir, tables_dir, sign_ta
   head(data)
   #data$ID<- row.names(data)
   
-  n_data_indices <- which(startsWith(names(data), "Normal"))
-  c_data_indices <- which(startsWith(names(data), "Cancer"))
   
   data.all<-merge(data, sign.table.f, by.x = "ID", by.y = "ID")
-  n_data_indices <- which(startsWith(names(data.all), "Normal"))
-  c_data_indices <- which(startsWith(names(data.all), "Cancer"))
+  n_data_indices <- which(startsWith(toupper(names(data.all)), toupper(groups[1])))
+  c_data_indices <- which(startsWith(toupper(names(data.all)), toupper(groups[2])))
   write.csv(data.all, paste(tables_dir, '/data_all.csv',sep = ''))
   
 

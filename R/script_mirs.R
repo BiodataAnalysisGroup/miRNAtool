@@ -20,18 +20,20 @@ source("save_as_pdf.R")
 source("save_image.R")
 
 # Libraries
-library(data.table) #
-library(tidyverse) #
+library(data.table)
+library(tidyverse)
 library(naniar)
 library(prada)
-library(gsubfn) #
-library(yaml) #
+library(gsubfn)
+library(yaml)
 library(ComplexHeatmap)
 library(multiMiR)
-library(enrichR) #
+library(enrichR)
 library(limma)
-library(lubridate) #
+library(lubridate)
 
+# Memeory
+gc1 <- gc(reset = TRUE)
 
 ################# SETTING UP OUTPUT DIRECTORIES AND REPORT FILE ################
 # Creating output folders
@@ -189,4 +191,11 @@ to_report <- paste("Differential analysis execution time: ", da_time_secs, sep =
 cat(to_report, file = report_file, sep = '\n', append = TRUE)
 
 to_report <- paste("Functional analysis execution time: ", fa_time_secs, sep = '')
+cat(to_report, file = report_file, sep = '\n', append = TRUE)
+
+# Memory
+gc2 <- gc()
+cat(sprintf("Max memory used: %.1fMb.\n", sum(gc2[,6] - gc1[,2])))
+
+to_report <- paste("\nMax memory used:", sum(gc2[,6] - gc1[,2]), 'Mb', sep = ' ')
 cat(to_report, file = report_file, sep = '\n', append = TRUE)
