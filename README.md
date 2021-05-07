@@ -31,7 +31,7 @@ git clone https://github.com/BiodataAnalysisGroup/miRNAtool.git
 
 ### Running the project
 The framework consists of six scripts:
-- ```script_mirs.R```
+- ```miRkit.R```
 - ```qc.R``` 
 - ```diff_analysis.R```
 - ```fa.R```
@@ -43,7 +43,7 @@ In order to run the project:
 2. Place the required input files inside the `data` directory and set the parameters inside the .yaml file. See instructions [here](https://github.com/BiodataAnalysisGroup/miRNAtool/tree/main/data). 
 3. Use the following command:
 ```
-source("script_mirs.R")
+source("miRkit.R")
 ```
 
 ## Additional scripts

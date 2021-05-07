@@ -40,7 +40,7 @@ QC <- function(data, plate, output_dir, na_threshold, rtc_threshold ,normalizati
   
   
   # Excluding NA's
-  filtered_data.plot <- copy(data.plot)
+  filtered_data.plot <- data.plot
   
   NA_s_per_sample_perc <- colSums(is.na(data.plot))/dim(data)[1]
   samples_to_exclude <- as.numeric(which(NA_s_per_sample_perc > na_threshold))

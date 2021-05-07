@@ -124,7 +124,7 @@ total_start_time <- start_time
 # QC analysis
 for (plate in plates){
   print(paste('Analysis for plate ', plate, sep = ''))
-  norm_data <- QC(copy(data), plate, output_dir, na_threshold_perc, rtc_threshold ,normalization_en_ex, report_file)
+  norm_data <- QC(data, plate, output_dir, na_threshold_perc, rtc_threshold ,normalization_en_ex, report_file)
   norm_data$plate <- paste('Plate', plate, sep = ' ')
   
   if (is.null(normalized_data)){
