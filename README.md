@@ -1,8 +1,8 @@
-# miRNAtool
-mirsRNAtool was implemented in [R](https://www.r-project.org/). 
+# miRkit
+miRkit was implemented in [R](https://www.r-project.org/). 
 
 ## Structure
-miRNAtool repository consists of three folders:
+miRkit repository consists of three folders:
 - `data`: This is where all the input files are stored.
 - `R`: This is where all the R scripts are stored.
 - `output`: This is where all the output files are stored. This folder is created automatically while executing the project. 
@@ -26,7 +26,7 @@ BiocManager::install(c("naniar", "prada", "ComplexHeatmap", "multiMiR", "limma")
 ### Installing
 The project can be downloaded using git:
 ```
-git clone https://github.com/BiodataAnalysisGroup/miRNAtool.git
+git clone https://github.com/BiodataAnalysisGroup/miRkit.git
 ```
 
 ### Running the project
