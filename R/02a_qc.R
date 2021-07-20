@@ -1,3 +1,7 @@
+
+# A function for quality control and 
+# sample filtering based on the proportion of NA values for each sample
+
 QC <- function(data, plate, output_dir, na_threshold, rtc_threshold ,normalization_en_ex, report_file){
   
   # Leave a blank line
