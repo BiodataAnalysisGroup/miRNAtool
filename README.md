@@ -30,18 +30,21 @@ git clone https://github.com/BiodataAnalysisGroup/miRkit.git
 ```
 
 ### Running the project
-The framework consists of six scripts:
-- ```miRkit.R```
-- ```qc.R``` 
-- ```diff_analysis.R```
-- ```fa.R```
-- ```save_as_pdf.R``` 
-- ```save_image.R```
+`miRkit` is a collection of R scripts/functions as listed bellow:
+
+- ```01_miRkit.R```
+- ```02a_qc.R``` 
+- ```02b_diff_analysis.R```
+- ```02c_fa.R```
+- ```03a_save_as_pdf.R``` 
+- ```03b_save_image.R```
 
 In order to run the project:
+
 1. Set the [R](https://github.com/BiodataAnalysisGroup/miRNAtool/tree/main/R) folder as your working directory
 2. Place the required input files inside the `data` directory and set the parameters inside the .yaml file. See instructions [here](https://github.com/BiodataAnalysisGroup/miRNAtool/tree/main/data). 
-3. Use the following command:
+3. Use the first script which works as a wrapper by calling the required functions:
+
 ```
 source("miRkit.R")
 ```
