@@ -46,7 +46,7 @@ In order to run the project:
 3. Use the first script which works as a wrapper by calling the required functions:
 
 ```
-source("miRkit.R")
+source("01_miRkit.R")
 ```
 
 ## Additional scripts
