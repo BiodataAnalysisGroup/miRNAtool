@@ -13,11 +13,11 @@ getwd()
 # qc.R : quality control
 # diff_analysis.R : differential analysis
 # fa.R : functional analysis
-source("qc.R")
-source("diff_analysis.R")
-source("fa.R")
-source("save_as_pdf.R")
-source("save_image.R")
+source("02a_qc.R")
+source("02b_diff_analysis.R")
+source("02c_fa.R")
+source("03a_save_as_pdf.R")
+source("03b_save_image.R")
 
 # Libraries
 library(data.table)
