@@ -1,3 +1,6 @@
+
+# A function for executing functional analysis and annotation
+
 functional_analysis <- function(sign.table.f, validated_or_predicted, kegg_enrich_criterion, go_criterion, output_dir, tables_dir){
   
   
