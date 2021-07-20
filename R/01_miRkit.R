@@ -1,3 +1,12 @@
+
+
+# A script working as a wrapper for executing miRkit' pipeline:
+#
+# 1. Quality control
+# 2. Differential analysis
+# 3. Functional analysis
+#
+
 # clear
 cat("\014")
 rm(list = ls())
