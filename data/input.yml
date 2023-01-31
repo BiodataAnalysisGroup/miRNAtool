@@ -5,7 +5,7 @@ plates:
  - 3
 
 # NA percentage threshold
-na_threshold: 0.1
+na_threshold: 0.95
 
 # Select whether the normalization has to be done with endogenous or exogenous data
 # Assign 'endogenous' or 'exogenous'

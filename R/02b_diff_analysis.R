@@ -1,13 +1,13 @@
 
 # A function for executing differential analysis between the provided samples
-
+#diff_analysis(normalized_data[,-dim(normalized_data)[2]], meta, diff_analysis_directory, tables_directory, sign_table_pval)
 diff_analysis <- function(normalized_data, meta, output_dir, tables_dir, sign_table_pval){
   
   
   meta <- meta[which(meta$Sample_ID %in% names(normalized_data)),]
   list<- as.character(meta$Sample_ID)
-  dfexp<-normalized_data[,list]
-  row.names(dfexp)<- normalized_data$ID
+  dfexp<- setDF(normalized_data[,list])
+  rownames(dfexp)<- normalized_data$ID
   
   pheno <- factor(meta$Group)
   groups <- unique(meta$Group)
@@ -25,12 +25,12 @@ diff_analysis <- function(normalized_data, meta, output_dir, tables_dir, sign_ta
   degCLLs <- topTable(fit,number =nrow(dfexp),adjust.method = "fdr",sort.by = "p")
   head(degCLLs)
   
-  sign.table<- as.data.frame(degCLLs)
+  sign.table<- setDF(degCLLs)
   sign.table$ID<- row.names(sign.table)
   sign.table.f<- sign.table[sign.table$adj.P.Val<= sign_table_pval, ] #TO DO: user's selection
   
   ##Heatmap
-  data<-as.data.frame(normalized_data)
+  data<-setDF(normalized_data)
   head(data)
   #data$ID<- row.names(data)
   
@@ -38,7 +38,7 @@ diff_analysis <- function(normalized_data, meta, output_dir, tables_dir, sign_ta
   data.all<-merge(data, sign.table.f, by.x = "ID", by.y = "ID")
   n_data_indices <- which(startsWith(toupper(names(data.all)), toupper(groups[1])))
   c_data_indices <- which(startsWith(toupper(names(data.all)), toupper(groups[2])))
-  write.csv(data.all, paste(tables_dir, '/data_all.csv',sep = ''))
+  fwrite(data.all, paste(tables_dir, '/data_all.csv',sep = ''))
   
 
   colnames(data.all)

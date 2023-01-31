@@ -7,10 +7,10 @@
 # 3. Functional analysis
 #
 
-# clear
-cat("\014")
-rm(list = ls())
-dev.off(dev.list()["RStudioGD"])
+# clear #############
+# cat("\014")
+# rm(list = ls())
+# dev.off(dev.list()["RStudioGD"])
 getwd()
 analysis.path=getwd()  ;analysis.path
 #analysis.path <- "D://exosomes//data" 
@@ -32,7 +32,6 @@ source("03b_save_image.R")
 library(data.table)
 library(tidyverse)
 library(naniar)
-library(prada)
 library(gsubfn)
 library(yaml)
 library(ComplexHeatmap)
@@ -41,7 +40,7 @@ library(enrichR)
 library(limma)
 library(lubridate)
 
-# Memeory
+# Memory
 gc1 <- gc(reset = TRUE)
 
 ################# SETTING UP OUTPUT DIRECTORIES AND REPORT FILE ################
@@ -110,7 +109,7 @@ meta<- fread(paste(inputfolder, "/phenodata.csv", sep = ''))
 
 head(meta)
 
-data<- as.data.frame(data)
+data<- setDF(data)
 data$ID<- mirs$`miRNA ID`
 data$plate<- mirs$Plate
 head(data)
@@ -131,6 +130,7 @@ start_time <- proc.time()
 total_start_time <- start_time
 
 # QC analysis
+
 for (plate in plates){
   print(paste('Analysis for plate ', plate, sep = ''))
   norm_data <- QC(data, plate, output_dir, na_threshold_perc, rtc_threshold ,normalization_en_ex, report_file)
@@ -159,7 +159,7 @@ if (!is.null(normalized_data)){
   normalized_data$ID[indices_duplicated] <- paste(normalized_data$ID[indices_duplicated], ' - index ', indices_duplicated, sep = '') 
   
   # Saving normalized_data to csv
-  write.csv(normalized_data, paste(tables_directory, '/normalized_data.csv', sep = ''))
+  fwrite(normalized_data, paste(tables_directory, '/normalized_data.csv', sep = ''))
   
   # diff analysis 
   start_time <- proc.time()
@@ -208,3 +208,4 @@ cat(sprintf("Max memory used: %.1fMb.\n", sum(gc2[,6] - gc1[,2])))
 
 to_report <- paste("\nMax memory used:", sum(gc2[,6] - gc1[,2]), 'Mb', sep = ' ')
 cat(to_report, file = report_file, sep = '\n', append = TRUE)
+

@@ -26,7 +26,7 @@ functional_analysis <- function(sign.table.f, validated_or_predicted, kegg_enric
     return(NULL)
   }
   ##
-  res<-as.data.frame(multimir_results@summary)
+  res<-setDF(multimir_results@summary)
   res$barcode<- paste(res$mature_mirna_id, res$target_symbol)
   res.plot<-res[!duplicated(res$barcode), ]
   write.csv(res$target_symbol, paste(tables_dir, '/multimir_results_',validated_or_predicted,'_summary_target_symbol.csv', sep = ''))
@@ -62,7 +62,7 @@ functional_analysis <- function(sign.table.f, validated_or_predicted, kegg_enric
   dbs <- list()
   dbs <- "KEGG_2019_Human"
   enriched <- enrichr(genesym, dbs)
-  KEGG_enrich<- as.data.frame(enriched[["KEGG_2019_Human"]])
+  KEGG_enrich<- setDF(enriched[["KEGG_2019_Human"]])
   KEGG_enrich.f<- subset(KEGG_enrich, Adjusted.P.value < kegg_enrich_criterion)
   write.csv(KEGG_enrich.f, paste(tables_dir, '/KEGG_enrich_f_',validated_or_predicted,'.csv', sep = ''))
   
@@ -86,7 +86,7 @@ functional_analysis <- function(sign.table.f, validated_or_predicted, kegg_enric
   dbs <- listEnrichrDbs()
   dbs <- "GO_Biological_Process_2018"
   enriched <- enrichr(genesym, dbs)
-  GO_enrich<- as.data.frame(enriched[["GO_Biological_Process_2018"]])
+  GO_enrich<- setDF(enriched[["GO_Biological_Process_2018"]])
   GO_enrich.f<- subset(GO_enrich, Adjusted.P.value < go_criterion)
   write.csv(KEGG_enrich.f, paste(tables_dir, '/GO_enrich_f_',validated_or_predicted,'.csv', sep = ''))
   

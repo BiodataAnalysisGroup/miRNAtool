@@ -45,12 +45,12 @@ QC <- function(data, plate, output_dir, na_threshold, rtc_threshold ,normalizati
   
   # Excluding NA's
   filtered_data.plot <- data.plot
-  
+  filtered_data.plot <- data.table(filtered_data.plot) 
   NA_s_per_sample_perc <- colSums(is.na(data.plot))/dim(data)[2]
   samples_to_exclude <- as.numeric(which(NA_s_per_sample_perc > na_threshold))
   
   if (length(samples_to_exclude)>0){
-    filtered_data.plot <- filtered_data.plot[, -c(samples_to_exclude)]
+    filtered_data.plot <- filtered_data.plot[, -c(samples_to_exclude), with = FALSE] 
     excluded_samples <- names(data.plot)[samples_to_exclude]
     sample_names<- sample_names[which(!sample_names %in% excluded_samples)]
     to_report <- paste('Samples [', paste(unlist(excluded_samples), collapse = ', '), '] were excluded because of their high NAs percentage.', sep = '')
@@ -58,7 +58,7 @@ QC <- function(data, plate, output_dir, na_threshold, rtc_threshold ,normalizati
   }
   
   if(length(sample_names) == 0){
-    print(paste("All samples from plate ", plate, " weere rejected. Check report", sep = ''))
+    print(paste("All samples from plate ", plate, " were rejected. Check report", sep = ''))
     return(NULL)
   }else if (length(which(startsWith(names(filtered_data.plot ), "Cancer"))) == 0) {
     print(paste("All cancer data from plate ",plate, " were rejected, because of high NA's percentage. Check report.", sep = ''))
@@ -69,8 +69,8 @@ QC <- function(data, plate, output_dir, na_threshold, rtc_threshold ,normalizati
   # boxplot quality before normalization
   # TO DO: exclude all the figures on the working directory (ask Nikos for his tool)
   Mnemiopsis_count_data<- filtered_data.plot
-  pseudoCount = log2(Mnemiopsis_count_data + 1) # log-transform to make numbers on scale (+1 to avoid zeroes)
-  df = melt(pseudoCount, variable.name = "Samples", value.name = "count") # reshape the matrix
+  pseudoCount <- log2(Mnemiopsis_count_data + 1) # log-transform to make numbers on scale (+1 to avoid zeroes)
+  df <- reshape2::melt(pseudoCount, variable.name = "Samples", value.name = "count") # reshape the matrix
   
   #png(file=paste(output_dir,'/plate',plate,'/boxplot_quality_plate_',plate,'.png', sep = ''), width=900, height=600)
   myplot <- ggplot(df, aes(x = Samples, y = count)) + geom_boxplot() + xlab("") +
@@ -172,7 +172,7 @@ QC <- function(data, plate, output_dir, na_threshold, rtc_threshold ,normalizati
   exogenous.plot <- exogenous[,!(names(exogenous) %in% drops_id)]
   
   ## gg miss upset plot - endogenous data
-  result = tryCatch({
+  result <- tryCatch({
     #png(file=paste(output_dir,'/plate',plate,'/gg_miss_upset_endogenous_plate_',plate,'.png', sep = ''), width=900, height=600)
     myplot <- gg_miss_upset(data.table(endogenous.plot))
     save_as_pdf({print(myplot)}, file.name = paste(output_dir,'/plate',plate,'/gg_miss_upset_endogenous_plate_',plate,'.pdf', sep = ''), width = 6, height = 4)
@@ -189,7 +189,7 @@ QC <- function(data, plate, output_dir, na_threshold, rtc_threshold ,normalizati
   
   
   ## gg miss upset plot - exogenous data
-  result = tryCatch({
+  result <- tryCatch({
     #png(file=paste(output_dir,'/plate',plate,'/gg_miss_upset_exogenous_plate_',plate,'.png', sep = ''), width=900, height=600)
     myplot <- gg_miss_upset(data.table(exogenous.plot))
     save_as_pdf({print(myplot)}, file.name = paste(output_dir,'/plate',plate,'/gg_miss_upset_exogenous_plate_',plate,'.pdf', sep = ''), width = 6, height = 4)
@@ -240,8 +240,8 @@ QC <- function(data, plate, output_dir, na_threshold, rtc_threshold ,normalizati
   #corrected data
   if (length(sample_names)>1){
     Mnemiopsis_count_data<- normalized_data[,!(names(normalized_data) %in% drops_id)]
-    pseudoCount = log2(Mnemiopsis_count_data + 1) # log-transform to make numbers on scale (+1 to avoid zeroes)
-    df = melt(pseudoCount, variable.name = "Samples", value.name = "count") # reshape the matrix
+    pseudoCount <- log2(Mnemiopsis_count_data + 1) # log-transform to make numbers on scale (+1 to avoid zeroes)
+    df <- reshape2::melt(pseudoCount, variable.name = "Samples", value.name = "count") # reshape the matrix
     
     #png(file=paste(output_dir,'/plate',plate,'/boxplot_normalized_',normalization_en_ex,'_plate_',plate,'.png', sep = ''), width=900, height=600)
     
@@ -256,8 +256,8 @@ QC <- function(data, plate, output_dir, na_threshold, rtc_threshold ,normalizati
     
   } else {
     Mnemiopsis_count_data<- normalized_data[,!(names(normalized_data) %in% drops_id)]
-    pseudoCount = log2(Mnemiopsis_count_data + 1) # log-transform to make numbers on scale (+1 to avoid zeroes)
-    df = melt(pseudoCount, variable.name = "Samples", value.name = "count") # reshape the matrix 
+    pseudoCount <- log2(Mnemiopsis_count_data + 1) # log-transform to make numbers on scale (+1 to avoid zeroes)
+    df <- reshape2::melt(pseudoCount, variable.name = "Samples", value.name = "count") # reshape the matrix 
     
     #png(file=paste(output_dir,'/plate',plate,'/boxplot_normalized_',normalization_en_ex,'_plate_',plate,'.png', sep = ''), width=900, height=600)
     #myplot <- boxplot(df, ylab = sample_names[1], xlab = "log2(count+1)", horizontal=T)
